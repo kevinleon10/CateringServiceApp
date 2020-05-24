@@ -5,4 +5,8 @@
     <string name="orders_title">Orders</string>
     <string name="profile_title">Profile</string>
     <string name="search_title">Search</string>
+    <string name="name_hint">Name</string>
+    <string name="phone_number_hint">Phone number</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
 </resources>
