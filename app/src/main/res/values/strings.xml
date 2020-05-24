@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">CateringServiceApp</string>
 
-    <string name="home_title">home</string>
-    <string name="orders_title">orders</string>
-    <string name="profile_title">profile</string>
+    <string name="home_title">Home</string>
+    <string name="orders_title">Orders</string>
+    <string name="profile_title">Profile</string>
+    <string name="search_title">Search</string>
 </resources>
