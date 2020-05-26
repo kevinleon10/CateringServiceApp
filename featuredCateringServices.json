@@ -1,0 +1,82 @@
+{
+  "featuredCateringServices": [
+    {
+      "title": "Hire for this week",
+      "cateringServiceList": [
+        {
+          "name": "The Island",
+          "type": "Fusion cuisine",
+          "imageUrlList": [
+            {},
+            {},
+            {}
+          ],
+          "pricePerGuest": 25,
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius ornare est ac pretium. In eget sodales leo. Etiam quis quam leo. Duis placerat scelerisque molestie. Proin ullamcorper laoreet ante ac viverra. Sed elementum tempor elit.",
+          "preparationTime": "30 min",
+          "minimumGuests": 10,
+          "maximumGuests": 20,
+          "priceRange": "$$",
+          "menu": {},
+          "timeAvailability": []
+        },
+        {
+          "name": "The Island",
+          "type": "Fusion cuisine",
+          "imageUrlList": [
+            {},
+            {},
+            {}
+          ],
+          "pricePerGuest": 25,
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius ornare est ac pretium. In eget sodales leo. Etiam quis quam leo. Duis placerat scelerisque molestie. Proin ullamcorper laoreet ante ac viverra. Sed elementum tempor elit.",
+          "preparationTime": "30 min",
+          "minimumGuests": 10,
+          "maximumGuests": 20,
+          "priceRange": "$$",
+          "menu": {},
+          "timeAvailability": []
+        }
+      ]
+    },
+    {
+      "title": "Most Popular",
+      "cateringServiceList": [
+        {
+          "name": "The Island",
+          "type": "Fusion cuisine",
+          "imageUrlList": [
+            {},
+            {},
+            {}
+          ],
+          "pricePerGuest": 25,
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius ornare est ac pretium. In eget sodales leo. Etiam quis quam leo. Duis placerat scelerisque molestie. Proin ullamcorper laoreet ante ac viverra. Sed elementum tempor elit.",
+          "preparationTime": "30 min",
+          "minimumGuests": 10,
+          "maximumGuests": 20,
+          "priceRange": "$$",
+          "menu": {},
+          "timeAvailability": []
+        },
+        {
+          "name": "The Island",
+          "type": "Fusion cuisine",
+          "imageUrlList": [
+            {},
+            {},
+            {}
+          ],
+          "pricePerGuest": 25,
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius ornare est ac pretium. In eget sodales leo. Etiam quis quam leo. Duis placerat scelerisque molestie. Proin ullamcorper laoreet ante ac viverra. Sed elementum tempor elit.",
+          "preparationTime": "30 min",
+          "minimumGuests": 10,
+          "maximumGuests": 20,
+          "priceRange": "$$",
+          "menu": {},
+          "timeAvailability": []
+        }
+      ]
+    }
+  ]
+}

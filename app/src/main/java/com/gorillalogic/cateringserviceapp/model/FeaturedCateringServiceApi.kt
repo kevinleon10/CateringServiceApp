@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface FeaturedCateringServiceApi {
 
-    @GET("kevinleon10/CateringServiceApp/develop/featuredCateringServiceList.json")
+    @GET("kevinleon10/CateringServiceApp/develop/featuredCateringServices.json")
     fun getFeaturedCateringServices(): Single<List<FeaturedCateringService>>
 
 }
