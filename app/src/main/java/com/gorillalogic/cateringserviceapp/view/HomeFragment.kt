@@ -9,13 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gorillalogic.cateringserviceapp.R
-import com.gorillalogic.cateringserviceapp.viewmodel.FeaturedCateringServiceListViewModel
+import com.gorillalogic.cateringserviceapp.viewmodel.FeaturedCateringServicesViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
-    private lateinit var viewModel: FeaturedCateringServiceListViewModel
-    private val listAdapter = FeaturedCateringServiceListAdapter(arrayListOf())
+    private lateinit var viewModel: FeaturedCateringServicesViewModel
+    private val featuredCateringServiceListAdapter = FeaturedCateringServiceListAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,11 +27,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(FeaturedCateringServiceListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(FeaturedCateringServicesViewModel::class.java)
         viewModel.featuredCateringServices.observe(viewLifecycleOwner, Observer {
             it?.let {
                 featuredCateringServiceList.visibility = View.VISIBLE
-                listAdapter.updateCateringServiceList(it)
+                featuredCateringServiceListAdapter.updateCateringServiceList(it)
             }
         })
         viewModel.loading.observe(viewLifecycleOwner, Observer {
@@ -42,19 +42,18 @@ class HomeFragment : Fragment() {
             }
         })
         viewModel.loadError.observe(viewLifecycleOwner, Observer {
-            featuredCateringServiceListError.visibility = if(it) View.VISIBLE else View.GONE
+            if(it) {
+                featuredCateringServiceListError.visibility = View.VISIBLE
+            }
         })
         viewModel.refresh()
 
         featuredCateringServiceList.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = listAdapter
+            adapter = featuredCateringServiceListAdapter
         }
 
         refreshLayout.setOnRefreshListener {
-            featuredCateringServiceList.visibility = View.GONE
-            featuredCateringServiceListError.visibility = View.GONE
-            featuredCateringServiceListLoading.visibility = View.VISIBLE
             viewModel.refresh()
             refreshLayout.isRefreshing = false
         }

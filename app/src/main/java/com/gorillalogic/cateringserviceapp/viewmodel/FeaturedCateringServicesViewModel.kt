@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class FeaturedCateringServiceListViewModel: ViewModel() {
+class FeaturedCateringServicesViewModel: ViewModel() {
 
     val featuredCateringServices by lazy { MutableLiveData<List<FeaturedCateringService>>() }
     val loadError by lazy { MutableLiveData<Boolean>() }
@@ -19,6 +19,7 @@ class FeaturedCateringServiceListViewModel: ViewModel() {
     private val apiService = FeaturedCateringServiceApiService()
 
     fun refresh() {
+        loading.value = true
         getCateringServices()
     }
 
