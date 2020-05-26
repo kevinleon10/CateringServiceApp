@@ -28,6 +28,21 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this).get(FeaturedCateringServicesViewModel::class.java)
+        observeViewModel()
+        viewModel.refresh()
+
+        featuredCateringServiceList.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = featuredCateringServiceListAdapter
+        }
+
+        refreshLayout.setOnRefreshListener {
+            viewModel.refresh()
+            refreshLayout.isRefreshing = false
+        }
+    }
+
+    private fun observeViewModel() {
         viewModel.featuredCateringServices.observe(viewLifecycleOwner, Observer {
             it?.let {
                 featuredCateringServiceList.visibility = View.VISIBLE
@@ -46,17 +61,6 @@ class HomeFragment : Fragment() {
                 featuredCateringServiceListError.visibility = View.VISIBLE
             }
         })
-        viewModel.refresh()
-
-        featuredCateringServiceList.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = featuredCateringServiceListAdapter
-        }
-
-        refreshLayout.setOnRefreshListener {
-            viewModel.refresh()
-            refreshLayout.isRefreshing = false
-        }
     }
 
 }
