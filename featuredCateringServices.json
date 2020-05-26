@@ -1,11 +1,11 @@
 [
   {
     "title": "Hire for this week",
-    "cateringServiceList": [
+    "cateringServices": [
       {
         "name": "The Island",
         "type": "Fusion cuisine",
-        "imageUrlList": [
+        "imageUrls": [
           {},
           {},
           {}
@@ -22,7 +22,7 @@
       {
         "name": "The Island",
         "type": "Fusion cuisine",
-        "imageUrlList": [
+        "imageUrls": [
           {},
           {},
           {}
@@ -40,11 +40,11 @@
   },
   {
     "title": "Most Popular",
-    "cateringServiceList": [
+    "cateringServices": [
       {
         "name": "The Island",
         "type": "Fusion cuisine",
-        "imageUrlList": [
+        "imageUrls": [
           {},
           {},
           {}
@@ -61,7 +61,7 @@
       {
         "name": "The Island",
         "type": "Fusion cuisine",
-        "imageUrlList": [
+        "imageUrls": [
           {},
           {},
           {}
