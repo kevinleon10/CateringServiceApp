@@ -28,14 +28,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this).get(FeaturedCateringServiceListViewModel::class.java)
-        viewModel.featuredCateringServiceList.observe(viewLifecycleOwner, Observer {
+        viewModel.featuredCateringServices.observe(viewLifecycleOwner, Observer {
             it?.let {
                 featuredCateringServiceList.visibility = View.VISIBLE
                 listAdapter.updateCateringServiceList(it)
             }
         })
         viewModel.loading.observe(viewLifecycleOwner, Observer {
-            loadingView.visibility = if(it) View.VISIBLE else View.GONE
+            featuredCateringServiceListLoading.visibility = if(it) View.VISIBLE else View.GONE
             if(it){
                 featuredCateringServiceListError.visibility = View.GONE
                 featuredCateringServiceList.visibility = View.GONE
@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
         refreshLayout.setOnRefreshListener {
             featuredCateringServiceList.visibility = View.GONE
             featuredCateringServiceListError.visibility = View.GONE
-            loadingView.visibility = View.VISIBLE
+            featuredCateringServiceListLoading.visibility = View.VISIBLE
             viewModel.refresh()
             refreshLayout.isRefreshing = false
         }

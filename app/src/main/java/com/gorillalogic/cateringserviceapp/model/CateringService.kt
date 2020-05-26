@@ -5,7 +5,7 @@ import java.util.*
 class CateringService(
     val name: String?,
     val type: String?,
-    val imageURLList: List<String>?,
+    val imageUrlList: List<String>?,
     val pricePerGuest: Float?,
     val description: String?,
     val preparationTime: String?,
