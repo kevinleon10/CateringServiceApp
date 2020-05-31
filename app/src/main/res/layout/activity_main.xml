@@ -11,6 +11,7 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/white"
-            app:menu="@menu/tool_bar_menu" />
+            app:menu="@menu/tool_bar_menu"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -53,7 +54,7 @@
         android:background="@android:color/white"
         app:itemBackground="@drawable/item_background"
         app:itemIconTint="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/catering_service_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
