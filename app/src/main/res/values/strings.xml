@@ -10,4 +10,5 @@
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="error_loading_text">An error occured while loading data</string>
+    <string name="functionality_in_progress">Functionality in progress</string>
 </resources>

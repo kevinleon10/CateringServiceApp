@@ -34,8 +34,8 @@ class FeaturedCateringServicesViewModel: ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<List<FeaturedCateringService>>() {
                     override fun onSuccess(t: List<FeaturedCateringService>) {
-                        featuredCateringServicesVisibility.value = View.VISIBLE
                         featuredCateringServices.value = t
+                        featuredCateringServicesVisibility.value = View.VISIBLE
                         loadingVisibility.value = View.GONE
                     }
 
