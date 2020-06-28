@@ -4,63 +4,54 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gorillalogic.cateringserviceapp.R
+import com.gorillalogic.cateringserviceapp.databinding.FragmentHomeBinding
 import com.gorillalogic.cateringserviceapp.viewmodel.FeaturedCateringServicesViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
     private lateinit var viewModel: FeaturedCateringServicesViewModel
-    private val featuredCateringServiceListAdapter = FeaturedCateringServiceListAdapter(arrayListOf())
+    private lateinit var dataBinding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this).get(FeaturedCateringServicesViewModel::class.java)
-        observeViewModel()
-        viewModel.refresh()
 
-        featuredCateringServiceList.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = featuredCateringServiceListAdapter
+        val featuredCateringServiceListAdapter = FeaturedCateringServiceListAdapter(arrayListOf())
+
+        dataBinding.apply {
+            viewModel = this@HomeFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+            featuredCateringServiceList.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = featuredCateringServiceListAdapter
+            }
+
+            refreshLayout.setOnRefreshListener {
+                this@HomeFragment.viewModel.refresh()
+                refreshLayout.isRefreshing = false
+            }
         }
 
-        refreshLayout.setOnRefreshListener {
-            viewModel.refresh()
-            refreshLayout.isRefreshing = false
-        }
-    }
-
-    private fun observeViewModel() {
         viewModel.featuredCateringServices.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                featuredCateringServiceList.visibility = View.VISIBLE
-                featuredCateringServiceListAdapter.updateCateringServiceList(it)
-            }
+            featuredCateringServiceListAdapter.updateCateringServiceList(it)
         })
-        viewModel.loading.observe(viewLifecycleOwner, Observer {
-            featuredCateringServiceListLoading.visibility = if(it) View.VISIBLE else View.GONE
-            if(it){
-                featuredCateringServiceListError.visibility = View.GONE
-                featuredCateringServiceList.visibility = View.GONE
-            }
-        })
-        viewModel.loadError.observe(viewLifecycleOwner, Observer {
-            if(it) {
-                featuredCateringServiceListError.visibility = View.VISIBLE
-            }
-        })
+
+        viewModel.refresh()
     }
 
 }

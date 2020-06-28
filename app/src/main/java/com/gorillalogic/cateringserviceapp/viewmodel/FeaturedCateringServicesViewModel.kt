@@ -1,5 +1,6 @@
 package com.gorillalogic.cateringserviceapp.viewmodel
 
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gorillalogic.cateringserviceapp.model.FeaturedCateringService
@@ -12,14 +13,17 @@ import io.reactivex.schedulers.Schedulers
 class FeaturedCateringServicesViewModel: ViewModel() {
 
     val featuredCateringServices by lazy { MutableLiveData<List<FeaturedCateringService>>() }
-    val loadError by lazy { MutableLiveData<Boolean>() }
-    val loading by lazy { MutableLiveData<Boolean>() }
+    val featuredCateringServicesVisibility by lazy { MutableLiveData<Int>() }
+    val errorVisibility by lazy { MutableLiveData<Int>() }
+    val loadingVisibility by lazy { MutableLiveData<Int>() }
 
     private val disposable = CompositeDisposable()
     private val apiService = FeaturedCateringServiceApiService()
 
     fun refresh() {
-        loading.value = true
+        errorVisibility.value = View.GONE
+        featuredCateringServicesVisibility.value = View.GONE
+        loadingVisibility.value = View.VISIBLE
         getCateringServices()
     }
 
@@ -30,16 +34,15 @@ class FeaturedCateringServicesViewModel: ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<List<FeaturedCateringService>>() {
                     override fun onSuccess(t: List<FeaturedCateringService>) {
-                        loadError.value = false
+                        featuredCateringServicesVisibility.value = View.VISIBLE
                         featuredCateringServices.value = t
-                        loading.value = false
+                        loadingVisibility.value = View.GONE
                     }
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        loadError.value = true
-                        featuredCateringServices.value = null
-                        loading.value = false
+                        errorVisibility.value = View.VISIBLE
+                        loadingVisibility.value = View.GONE
                     }
                 })
         )
