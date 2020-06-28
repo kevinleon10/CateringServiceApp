@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-    
+
     <data>
+
         <variable
             name="featureCateringService"
             type="com.gorillalogic.cateringserviceapp.model.FeaturedCateringService" />
@@ -30,14 +31,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
-                android:text="@{featureCateringService.title}"/>
+                android:text="@{featureCateringService.title}" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/featuredCateringServiceList"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:overScrollMode="never" />
+            android:id="@+id/cateringServiceList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="20dp" />
 
     </LinearLayout>
 </layout>

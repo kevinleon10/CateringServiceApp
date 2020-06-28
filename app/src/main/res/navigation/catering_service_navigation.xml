@@ -22,6 +22,9 @@
         <action
             android:id="@+id/actionHome"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="cateringService"
+            app:argType="com.gorillalogic.cateringserviceapp.model.CateringService" />
     </fragment>
     <fragment
         android:id="@+id/ordersFragment"

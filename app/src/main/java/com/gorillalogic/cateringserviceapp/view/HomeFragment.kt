@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.featuredCateringServices.observe(viewLifecycleOwner, Observer {
-            featuredCateringServiceListAdapter.updateCateringServiceList(it)
+            featuredCateringServiceListAdapter.updateFeaturedCateringServiceList(it)
         })
 
         viewModel.refresh()

@@ -1,12 +1,13 @@
 package com.gorillalogic.cateringserviceapp.model
 
+import java.io.Serializable
 import java.util.*
 
 class CateringService(
     val name: String?,
     val type: String?,
     val imageUrls: List<String>?,
-    val pricePerGuest: Float?,
+    val pricePerGuest: Int?,
     val description: String?,
     val preparationTime: String?,
     val minimumGuests: Int?,
@@ -14,4 +15,4 @@ class CateringService(
     val priceRange: String?,
     val menu: Menu?,
     val timeAvailability: List<Date>?
-)
+) : Serializable

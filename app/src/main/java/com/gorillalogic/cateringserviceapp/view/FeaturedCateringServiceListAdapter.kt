@@ -3,6 +3,7 @@ package com.gorillalogic.cateringserviceapp.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gorillalogic.cateringserviceapp.R
 import com.gorillalogic.cateringserviceapp.databinding.ItemFeaturedCateringServiceBinding
@@ -11,7 +12,7 @@ import com.gorillalogic.cateringserviceapp.model.FeaturedCateringService
 class FeaturedCateringServiceListAdapter(private val featuredCateringServiceList: ArrayList<FeaturedCateringService>) :
     RecyclerView.Adapter<FeaturedCateringServiceListAdapter.FeaturedCateringServiceViewHolder>() {
 
-    fun updateCateringServiceList(newFeaturedCateringServiceList: List<FeaturedCateringService>) {
+    fun updateFeaturedCateringServiceList(newFeaturedCateringServiceList: List<FeaturedCateringService>) {
         featuredCateringServiceList.clear()
         featuredCateringServiceList.addAll(newFeaturedCateringServiceList)
         notifyDataSetChanged()
@@ -22,7 +23,12 @@ class FeaturedCateringServiceListAdapter(private val featuredCateringServiceList
         viewType: Int
     ): FeaturedCateringServiceViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = DataBindingUtil.inflate<ItemFeaturedCateringServiceBinding>(inflater, R.layout.item_featured_catering_service, parent, false)
+        val view = DataBindingUtil.inflate<ItemFeaturedCateringServiceBinding>(
+            inflater,
+            R.layout.item_featured_catering_service,
+            parent,
+            false
+        )
         return FeaturedCateringServiceViewHolder(view)
     }
 
@@ -30,7 +36,20 @@ class FeaturedCateringServiceListAdapter(private val featuredCateringServiceList
 
     override fun onBindViewHolder(holder: FeaturedCateringServiceViewHolder, position: Int) {
         holder.view.featureCateringService = featuredCateringServiceList[position]
+        holder.bind()
     }
 
-    class FeaturedCateringServiceViewHolder(var view: ItemFeaturedCateringServiceBinding) : RecyclerView.ViewHolder(view.root)
+    class FeaturedCateringServiceViewHolder(var view: ItemFeaturedCateringServiceBinding) :
+        RecyclerView.ViewHolder(view.root) {
+        fun bind() {
+            val cateringServiceListAdapter = CateringServiceListAdapter(arrayListOf())
+            view.cateringServiceList.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = cateringServiceListAdapter
+            }
+            view.featureCateringService.let {
+                cateringServiceListAdapter.updateCateringServiceList(view.featureCateringService!!.cateringServices!!)
+            }
+        }
+    }
 }
