@@ -5,7 +5,11 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class FeaturedCateringServiceApiService {
+class CateringServiceApiService {
+
+    companion object {
+        val instance = CateringServiceApiService()
+    }
 
     private val BASE_URL = "https://raw.githubusercontent.com"
 
@@ -14,9 +18,13 @@ class FeaturedCateringServiceApiService {
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
-        .create(FeaturedCateringServiceApi::class.java)
+        .create(CateringServiceApi::class.java)
 
     fun getFeaturedCateringServices(): Single<List<FeaturedCateringService>> {
         return api.getFeaturedCateringServices()
+    }
+
+    fun getUpcomingOrders(): Single<List<UpcomingOrder>> {
+        return api.getUpcomingOrders()
     }
 }

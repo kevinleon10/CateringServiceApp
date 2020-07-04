@@ -39,7 +39,6 @@ class CateringServiceListAdapter(private val cateringServiceList: ArrayList<Cate
     override fun onBindViewHolder(holder: CateringServiceViewHolder, position: Int) {
         holder.view.cateringService = cateringServiceList[position]
         holder.bind()
-
     }
 
     class CateringServiceViewHolder(var view: ItemCateringServiceBinding) :
