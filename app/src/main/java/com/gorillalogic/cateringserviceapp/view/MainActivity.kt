@@ -13,8 +13,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var dataBinding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        dataBinding =  DataBindingUtil.setContentView(this, R.layout.activity_main)
+        dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val navController = Navigation.findNavController(this, R.id.fragment)
         NavigationUI.setupWithNavController(dataBinding.bottomNavigationView, navController)
