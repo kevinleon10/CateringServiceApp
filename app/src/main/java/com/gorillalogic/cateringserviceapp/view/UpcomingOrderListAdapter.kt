@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gorillalogic.cateringserviceapp.R
 import com.gorillalogic.cateringserviceapp.databinding.ItemUpcomingOrderBinding
 import com.gorillalogic.cateringserviceapp.model.UpcomingOrder
+import com.gorillalogic.cateringserviceapp.util.getProgressDrawable
+import com.gorillalogic.cateringserviceapp.util.loadImage
 
 class UpcomingOrderListAdapter(private val upcomingOrderList: ArrayList<UpcomingOrder>) :
     RecyclerView.Adapter<UpcomingOrderListAdapter.UpcomingOrderViewHolder>() {
@@ -35,7 +37,19 @@ class UpcomingOrderListAdapter(private val upcomingOrderList: ArrayList<Upcoming
 
     override fun onBindViewHolder(holder: UpcomingOrderViewHolder, position: Int) {
         holder.view.upcomingOrder = upcomingOrderList[position]
+        holder.bind()
     }
 
-    class UpcomingOrderViewHolder(var view: ItemUpcomingOrderBinding) : RecyclerView.ViewHolder(view.root)
+    class UpcomingOrderViewHolder(var view: ItemUpcomingOrderBinding) :
+        RecyclerView.ViewHolder(view.root) {
+        fun bind() {
+            view.apply {
+                val imageUrl = upcomingOrder?.imageUrl
+                cateringServiceImage.loadImage(
+                    imageUrl,
+                    getProgressDrawable(root.context)
+                )
+            }
+        }
+    }
 }

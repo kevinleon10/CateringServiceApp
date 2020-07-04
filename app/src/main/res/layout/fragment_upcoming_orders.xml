@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.gorillalogic.cateringserviceapp.viewmodel.UpcomingOrdersViewModel" />
@@ -18,7 +19,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/upcomingOrdersList"

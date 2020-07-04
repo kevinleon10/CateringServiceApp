@@ -1,5 +1,6 @@
 package com.gorillalogic.cateringserviceapp.view
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         val navController = Navigation.findNavController(this, R.id.fragment)
         NavigationUI.setupWithNavController(dataBinding.bottomNavigationView, navController)
+
+        dataBinding.mainLayout.setBackgroundColor(Color.WHITE)
     }
 
 }

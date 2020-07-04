@@ -13,7 +13,6 @@
     <string name="functionality_in_progress">Functionality in progress</string>
     <string name="guests">%1$d-%2$d Guests</string>
     <string name="price_per_guest">$%1$d per guest</string>
-    <string name="upcoming">Upcoming</string>
-    <string name="past">Past</string>
     <string name="guest">Guests</string>
+    <string name="total">TOTAL $%1$d</string>
 </resources>
