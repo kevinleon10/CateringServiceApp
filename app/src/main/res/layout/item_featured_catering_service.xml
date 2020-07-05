@@ -19,7 +19,6 @@
             android:gravity="center_vertical">
 
             <View
-                android:id="@+id/featuredCateringServiceLine"
                 android:layout_width="20dp"
                 android:layout_height="1dp"
                 android:background="@color/colorPrimary" />

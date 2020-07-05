@@ -25,7 +25,10 @@ class DetailFragment : Fragment() {
 
         arguments?.let {
             dataBinding.cateringService = DetailFragmentArgs.fromBundle(it).cateringService
+        }
 
+        dataBinding.closeImage.setOnClickListener {
+            this@DetailFragment.requireActivity().onBackPressed()
         }
 
     }
