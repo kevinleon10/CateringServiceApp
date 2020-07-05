@@ -34,6 +34,7 @@ def navVersion = '2.3.0-alpha06'
 def daggerVersion = '2.14.1'
 def mockitoVersion = '2.11.0'
 def materialVersion = "1.1.0"
+def carouselVersion = "0.1.5"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -71,6 +72,8 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
     testImplementation "android.arch.core:core-testing:1.1.1"
     kaptTest "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    implementation "com.synnapps:carouselview:$carouselVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

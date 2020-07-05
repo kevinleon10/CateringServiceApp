@@ -18,6 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/titleLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -53,6 +54,19 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/carouselView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleLayout"
+            app:fillColor="@color/colorPrimary"
+            app:pageColor="@android:color/white"
+            app:radius="2dp"
+            app:slideInterval="7000"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="2dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

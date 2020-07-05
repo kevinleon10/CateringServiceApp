@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.gorillalogic.cateringserviceapp.R
 import com.gorillalogic.cateringserviceapp.databinding.FragmentDetailBinding
+import com.gorillalogic.cateringserviceapp.util.getProgressDrawable
+import com.gorillalogic.cateringserviceapp.util.loadImage
 
 class DetailFragment : Fragment() {
 
@@ -23,12 +25,22 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.let {
-            dataBinding.cateringService = DetailFragmentArgs.fromBundle(it).cateringService
-        }
+        dataBinding.apply {
+            arguments?.let {
+                cateringService = DetailFragmentArgs.fromBundle(it).cateringService
+            }
 
-        dataBinding.closeImage.setOnClickListener {
-            this@DetailFragment.requireActivity().onBackPressed()
+            closeImage.setOnClickListener {
+                this@DetailFragment.requireActivity().onBackPressed()
+            }
+
+            carouselView.setImageListener { position, imageView ->
+                imageView.loadImage(
+                    cateringService?.imageUrls?.get(position),
+                    getProgressDrawable(root.context)
+                )
+            }
+            cateringService.let { carouselView.pageCount = cateringService!!.imageUrls!!.size }
         }
 
     }
