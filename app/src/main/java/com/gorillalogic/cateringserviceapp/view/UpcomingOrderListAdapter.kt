@@ -44,6 +44,12 @@ class UpcomingOrderListAdapter(private val upcomingOrderList: ArrayList<Upcoming
         RecyclerView.ViewHolder(view.root) {
         fun bind() {
             view.apply {
+                cardLine.setBackgroundColor(
+                    androidx.core.content.ContextCompat.getColor(
+                        root.context,
+                        R.color.colorAccent
+                    )
+                )
                 val imageUrl = upcomingOrder?.imageUrl
                 cateringServiceImage.loadImage(
                     imageUrl,
