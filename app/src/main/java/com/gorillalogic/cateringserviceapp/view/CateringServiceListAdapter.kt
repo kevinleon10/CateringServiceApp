@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gorillalogic.cateringserviceapp.R
 import com.gorillalogic.cateringserviceapp.databinding.ItemCateringServiceBinding
 import com.gorillalogic.cateringserviceapp.model.CateringService
+import com.gorillalogic.cateringserviceapp.util.MenuHolder
 import com.gorillalogic.cateringserviceapp.util.getProgressDrawable
 import com.gorillalogic.cateringserviceapp.util.loadImage
 
@@ -53,6 +54,7 @@ class CateringServiceListAdapter(private val cateringServiceList: ArrayList<Cate
                     )
                     cateringServiceLayout.setOnClickListener {
                         val action = HomeFragmentDirections.actionDetail(cateringService!!)
+                        MenuHolder.instance.setMenu((cateringService as CateringService).menu)
                         Navigation.findNavController(view.root).navigate(action)
                     }
                 }

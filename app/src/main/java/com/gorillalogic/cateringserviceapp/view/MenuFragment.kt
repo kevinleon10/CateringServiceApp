@@ -11,11 +11,13 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.gorillalogic.cateringserviceapp.R
 import com.gorillalogic.cateringserviceapp.databinding.FragmentMenuBinding
+import com.gorillalogic.cateringserviceapp.util.MenuHolder
 
 
 class MenuFragment : Fragment() {
 
     private lateinit var dataBinding: FragmentMenuBinding
+    private var menu = MenuHolder.instance.getMenu()
     private val tabCount = 3
     private val pageTitles = arrayListOf("Breakfast", "Lunch", "Dinner")
 
@@ -30,15 +32,21 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dataBinding.viewPager.adapter = PagerAdapter(this.requireActivity().supportFragmentManager)
-        dataBinding.menuLayout.setBackgroundColor(ContextCompat.getColor(dataBinding.root.context, R.color.colorAccent))
+        dataBinding.menuLayout.setBackgroundColor(
+            ContextCompat.getColor(
+                dataBinding.root.context,
+                R.color.colorAccent
+            )
+        )
     }
 
-    inner class PagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+    inner class PagerAdapter(manager: FragmentManager) :
+        FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getCount(): Int = tabCount
 
         override fun getItem(pos: Int): Fragment {
-            return FoodTimeFragment()
+            return FoodTimeFragment(menu?.foodTimes!![pos])
         }
 
         override fun getPageTitle(position: Int): CharSequence {
