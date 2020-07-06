@@ -41,6 +41,7 @@ class DetailFragment : Fragment() {
                 )
             }
             cateringService.let { carouselView.pageCount = cateringService!!.imageUrls!!.size }
+            circleLayout.bringToFront()
         }
 
     }

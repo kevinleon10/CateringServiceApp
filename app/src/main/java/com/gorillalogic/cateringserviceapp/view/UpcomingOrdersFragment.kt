@@ -11,18 +11,21 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gorillalogic.cateringserviceapp.R
 import com.gorillalogic.cateringserviceapp.databinding.FragmentUpcomingOrdersBinding
+import com.gorillalogic.cateringserviceapp.util.getVisibility
 import com.gorillalogic.cateringserviceapp.viewmodel.UpcomingOrdersViewModel
 
 class UpcomingOrdersFragment : Fragment() {
 
     private lateinit var viewModel: UpcomingOrdersViewModel
     private lateinit var dataBinding: FragmentUpcomingOrdersBinding
+    private val upcomingOrderListAdapter = UpcomingOrderListAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_upcoming_orders, container, false)
+        dataBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_upcoming_orders, container, false)
         return dataBinding.root
     }
 
@@ -31,26 +34,41 @@ class UpcomingOrdersFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(UpcomingOrdersViewModel::class.java)
 
-        val upcomingOrderListAdapter = UpcomingOrderListAdapter(arrayListOf())
-
         dataBinding.apply {
-            viewModel = this@UpcomingOrdersFragment.viewModel
-            lifecycleOwner = viewLifecycleOwner
             upcomingOrdersList.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = upcomingOrderListAdapter
             }
 
             refreshLayout.setOnRefreshListener {
-                this@UpcomingOrdersFragment.viewModel.refresh()
+                viewModel.refresh()
                 refreshLayout.isRefreshing = false
             }
         }
 
-        viewModel.upcomingOrders.observe(viewLifecycleOwner, Observer {
-            upcomingOrderListAdapter.updateUpcomingOrderList(it)
-        })
+        setObservers()
 
         viewModel.refresh()
+    }
+
+    private fun setObservers() {
+        dataBinding.apply {
+            viewModel.errorVisible.observe(viewLifecycleOwner, Observer {
+                dataBinding.upcomingOrdersListError.visibility = getVisibility(it)
+            })
+
+            viewModel.loadingVisible.observe(viewLifecycleOwner, Observer {
+                dataBinding.upcomingOrdersListLoading.visibility = getVisibility(it)
+            })
+
+            viewModel.upcomingOrders.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    upcomingOrdersList.visibility = getVisibility(true)
+                    upcomingOrderListAdapter.updateUpcomingOrderList(it)
+                } else {
+                    upcomingOrdersList.visibility = getVisibility(false)
+                }
+            })
+        }
     }
 }

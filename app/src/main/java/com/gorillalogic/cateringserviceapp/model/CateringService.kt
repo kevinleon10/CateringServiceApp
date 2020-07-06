@@ -14,5 +14,5 @@ class CateringService(
     val maximumGuests: Int?,
     val priceRange: String?,
     val menu: Menu?,
-    val timeAvailability: List<Date>?
+    val timeAvailability: List<String>?
 ) : Serializable

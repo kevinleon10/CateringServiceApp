@@ -1,6 +1,5 @@
 package com.gorillalogic.cateringserviceapp.viewmodel
 
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gorillalogic.cateringserviceapp.model.CateringServiceApiService
@@ -13,16 +12,15 @@ import io.reactivex.schedulers.Schedulers
 class UpcomingOrdersViewModel: ViewModel() {
 
     val upcomingOrders by lazy { MutableLiveData<List<UpcomingOrder>>() }
-    val upcomingOrdersVisibility by lazy { MutableLiveData<Int>() }
-    val errorVisibility by lazy { MutableLiveData<Int>() }
-    val loadingVisibility by lazy { MutableLiveData<Int>() }
+    val errorVisible by lazy { MutableLiveData<Boolean>() }
+    val loadingVisible by lazy { MutableLiveData<Boolean>() }
 
     private val disposable = CompositeDisposable()
 
     fun refresh() {
-        errorVisibility.value = View.GONE
-        upcomingOrdersVisibility.value = View.GONE
-        loadingVisibility.value = View.VISIBLE
+        errorVisible.value = false
+        loadingVisible.value = true
+        upcomingOrders.value = null
         getUpcomingOrders()
     }
 
@@ -34,14 +32,13 @@ class UpcomingOrdersViewModel: ViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<List<UpcomingOrder>>() {
                     override fun onSuccess(t: List<UpcomingOrder>) {
                         upcomingOrders.value = t
-                        upcomingOrdersVisibility.value = View.VISIBLE
-                        loadingVisibility.value = View.GONE
+                        loadingVisible.value = false
                     }
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        errorVisibility.value = View.VISIBLE
-                        loadingVisibility.value = View.GONE
+                        errorVisible.value = true
+                        loadingVisible.value = false
                     }
                 })
         )

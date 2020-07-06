@@ -1,6 +1,7 @@
 package com.gorillalogic.cateringserviceapp.util
 
 import android.content.Context
+import android.view.View
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -23,4 +24,8 @@ fun ImageView.loadImage(uri: String?, progressDrawable: CircularProgressDrawable
         .setDefaultRequestOptions(options)
         .load(uri)
         .into(this)
+}
+
+fun getVisibility(visible: Boolean): Int {
+    return if (visible) View.VISIBLE else View.GONE
 }
