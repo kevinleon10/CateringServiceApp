@@ -38,10 +38,7 @@ class MenuFragment : Fragment() {
         override fun getCount(): Int = tabCount
 
         override fun getItem(pos: Int): Fragment {
-            return when (pos) {
-                0 -> UpcomingOrdersFragment()
-                else -> PastOrdersFragment()
-            }
+            return FoodTimeFragment()
         }
 
         override fun getPageTitle(position: Int): CharSequence {
