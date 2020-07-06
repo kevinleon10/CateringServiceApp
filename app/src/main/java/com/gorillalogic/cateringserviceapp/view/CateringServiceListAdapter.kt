@@ -44,8 +44,14 @@ class CateringServiceListAdapter(private val cateringServiceList: ArrayList<Cate
 
     class CateringServiceViewHolder(var view: ItemCateringServiceBinding) :
         RecyclerView.ViewHolder(view.root) {
-        fun bind(){
+        fun bind() {
             view.apply {
+                cardLine.setBackgroundColor(
+                    androidx.core.content.ContextCompat.getColor(
+                        root.context,
+                        R.color.colorAccent
+                    )
+                )
                 cateringService.let {
                     val imageUrl = cateringService!!.imageUrls?.get(0)
                     cateringServiceImage.loadImage(

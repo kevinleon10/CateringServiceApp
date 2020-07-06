@@ -29,18 +29,19 @@ class FoodTimeFragment(var foodTime: FoodTime) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         dataBinding.apply {
+            saucer = foodTime.saucers!![0]
             firstItem.loadImage(
-                foodTime.saucers?.get(0)?.imageUrl,
+                foodTime.saucers!![0].imageUrl,
                 getProgressDrawable(root.context)
             )
 
             secondItem.loadImage(
-                foodTime.saucers?.get(1)?.imageUrl,
+                foodTime.saucers!![1].imageUrl,
                 getProgressDrawable(root.context)
             )
 
             thirdItem.loadImage(
-                foodTime.saucers?.get(2)?.imageUrl,
+                foodTime.saucers!![2].imageUrl,
                 getProgressDrawable(root.context)
             )
         }
