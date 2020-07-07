@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.gorillalogic.cateringserviceapp.R
 import com.gorillalogic.cateringserviceapp.databinding.FragmentDetailBinding
 import com.gorillalogic.cateringserviceapp.util.getProgressDrawable
 import com.gorillalogic.cateringserviceapp.util.loadImage
+
 
 class DetailFragment : Fragment() {
 
@@ -42,6 +44,37 @@ class DetailFragment : Fragment() {
             }
             cateringService.let { carouselView.pageCount = cateringService!!.imageUrls!!.size }
             circleLayout.bringToFront()
+
+            fillDropdown()
+        }
+    }
+
+    private fun fillDropdown(){
+
+        var guestQuantity =
+            arrayOf<String?>()
+
+        dataBinding.apply {
+            for (i in cateringService?.minimumGuests!!..cateringService?.maximumGuests!!){
+                guestQuantity += i.toString()
+            }
+
+            val guestsAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
+                dataBinding.root.context,
+                R.layout.dropdown_menu_popup_item,
+                guestQuantity
+            )
+
+            val datesAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
+                dataBinding.root.context,
+                R.layout.dropdown_menu_popup_item,
+                cateringService?.timeAvailability!!.toTypedArray()
+            )
+
+
+            guestsDropdown.setAdapter(guestsAdapter)
+            datesDropdown.setAdapter(datesAdapter)
+
         }
 
     }

@@ -12,7 +12,7 @@ import com.gorillalogic.cateringserviceapp.model.FoodTime
 import com.gorillalogic.cateringserviceapp.util.getProgressDrawable
 import com.gorillalogic.cateringserviceapp.util.loadImage
 
-class FoodTimeFragment(var foodTime: FoodTime) : Fragment() {
+class FoodTimeFragment(private var foodTime: FoodTime) : Fragment() {
 
     private lateinit var dataBinding: FragmentFoodTimeBinding
 

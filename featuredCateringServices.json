@@ -85,7 +85,7 @@
             }
           ]
         },
-        "timeAvailability": ["May 16 at 11:30 am, May 17 at 11:30 am", "May 18 at 11:30 am"]
+        "timeAvailability": ["May 16 at 11:30 am", "May 17 at 11:30 am", "May 18 at 11:30 am"]
       },
       {
         "name": "The Island",
@@ -170,7 +170,7 @@
             }
           ]
         },
-        "timeAvailability": ["May 16 at 11:30 am, May 17 at 11:30 am", "May 18 at 11:30 am"]
+        "timeAvailability": ["May 16 at 11:30 am", "May 17 at 11:30 am", "May 18 at 11:30 am"]
       }
     ]
   },
@@ -260,7 +260,7 @@
             }
           ]
         },
-        "timeAvailability": ["May 16 at 11:30 am, May 17 at 11:30 am", "May 18 at 11:30 am"]
+        "timeAvailability": ["May 16 at 11:30 am", "May 17 at 11:30 am", "May 18 at 11:30 am"]
       },
       {
         "name": "The Island",
@@ -345,7 +345,7 @@
             }
           ]
         },
-        "timeAvailability": ["May 16 at 11:30 am, May 17 at 11:30 am", "May 18 at 11:30 am"]
+        "timeAvailability": ["May 16 at 11:30 am", "May 17 at 11:30 am", "May 18 at 11:30 am"]
       }
     ]
   }
