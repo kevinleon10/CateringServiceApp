@@ -56,7 +56,7 @@ class DetailFragment : Fragment() {
 
         dataBinding.apply {
             for (i in cateringService?.minimumGuests!!..cateringService?.maximumGuests!!){
-                guestQuantity += i.toString()
+                guestQuantity += "$i Guests"
             }
 
             val guestsAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
@@ -65,16 +65,18 @@ class DetailFragment : Fragment() {
                 guestQuantity
             )
 
+            val datesAvailable = cateringService?.timeAvailability!!.toTypedArray()
             val datesAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
                 dataBinding.root.context,
                 R.layout.dropdown_menu_popup_item,
-                cateringService?.timeAvailability!!.toTypedArray()
+                datesAvailable
             )
 
 
             guestsDropdown.setAdapter(guestsAdapter)
+            guestsDropdown.setText(guestQuantity[0], false)
             datesDropdown.setAdapter(datesAdapter)
-
+            datesDropdown.setText(datesAvailable[0], false)
         }
 
     }
