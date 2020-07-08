@@ -14,8 +14,8 @@ import javax.inject.Inject
 class FeaturedCateringServicesViewModel: ViewModel() {
 
     val featuredCateringServices by lazy { MutableLiveData<List<FeaturedCateringService>>() }
-    val errorVisible by lazy { MutableLiveData<Boolean>() }
-    val loadingVisible by lazy { MutableLiveData<Boolean>() }
+    val loadError by lazy { MutableLiveData<Boolean>() }
+    val loading by lazy { MutableLiveData<Boolean>() }
 
     @Inject
     lateinit var disposable: CompositeDisposable
@@ -28,9 +28,9 @@ class FeaturedCateringServicesViewModel: ViewModel() {
     }
 
     fun refresh() {
-        errorVisible.value = false
+        loadError.value = false
         featuredCateringServices.value = null
-        loadingVisible.value = true
+        loading.value = true
         getCateringServices()
     }
 
@@ -42,13 +42,13 @@ class FeaturedCateringServicesViewModel: ViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<List<FeaturedCateringService>>() {
                     override fun onSuccess(t: List<FeaturedCateringService>) {
                         featuredCateringServices.value = t
-                        loadingVisible.value = false
+                        loading.value = false
                     }
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        errorVisible.value = true
-                        loadingVisible.value = false
+                        loadError.value = true
+                        loading.value = false
                     }
                 })
         )

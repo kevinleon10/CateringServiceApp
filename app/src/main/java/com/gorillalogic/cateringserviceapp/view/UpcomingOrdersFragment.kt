@@ -53,11 +53,11 @@ class UpcomingOrdersFragment : Fragment() {
 
     private fun setObservers() {
         dataBinding.apply {
-            viewModel.errorVisible.observe(viewLifecycleOwner, Observer {
+            viewModel.loadError.observe(viewLifecycleOwner, Observer {
                 dataBinding.upcomingOrdersListError.visibility = getVisibility(it)
             })
 
-            viewModel.loadingVisible.observe(viewLifecycleOwner, Observer {
+            viewModel.loading.observe(viewLifecycleOwner, Observer {
                 dataBinding.upcomingOrdersListLoading.visibility = getVisibility(it)
             })
 

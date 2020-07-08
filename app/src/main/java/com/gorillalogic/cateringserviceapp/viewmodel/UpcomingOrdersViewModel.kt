@@ -14,8 +14,8 @@ import javax.inject.Inject
 class UpcomingOrdersViewModel: ViewModel() {
 
     val upcomingOrders by lazy { MutableLiveData<List<UpcomingOrder>>() }
-    val errorVisible by lazy { MutableLiveData<Boolean>() }
-    val loadingVisible by lazy { MutableLiveData<Boolean>() }
+    val loadError by lazy { MutableLiveData<Boolean>() }
+    val loading by lazy { MutableLiveData<Boolean>() }
 
     @Inject
     lateinit var disposable: CompositeDisposable
@@ -28,8 +28,8 @@ class UpcomingOrdersViewModel: ViewModel() {
     }
 
     fun refresh() {
-        errorVisible.value = false
-        loadingVisible.value = true
+        loadError.value = false
+        loading.value = true
         upcomingOrders.value = null
         getUpcomingOrders()
     }
@@ -42,13 +42,13 @@ class UpcomingOrdersViewModel: ViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<List<UpcomingOrder>>() {
                     override fun onSuccess(t: List<UpcomingOrder>) {
                         upcomingOrders.value = t
-                        loadingVisible.value = false
+                        loading.value = false
                     }
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        errorVisible.value = true
-                        loadingVisible.value = false
+                        loadError.value = true
+                        loading.value = false
                     }
                 })
         )

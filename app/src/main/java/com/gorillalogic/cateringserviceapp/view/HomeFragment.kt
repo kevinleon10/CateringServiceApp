@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
 
     private fun setObservers() {
         dataBinding.apply {
-            viewModel.errorVisible.observe(viewLifecycleOwner, Observer {
+            viewModel.loadError.observe(viewLifecycleOwner, Observer {
                 dataBinding.featuredCateringServiceListError.visibility = getVisibility(it)
             })
 
@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
                 }
             })
 
-            viewModel.loadingVisible.observe(viewLifecycleOwner, Observer {
+            viewModel.loading.observe(viewLifecycleOwner, Observer {
                 dataBinding.featuredCateringServiceListLoading.visibility = getVisibility(it)
             })
         }
