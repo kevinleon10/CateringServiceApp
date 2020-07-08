@@ -2,12 +2,14 @@ package com.gorillalogic.cateringserviceapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.gorillalogic.cateringserviceapp.di.DaggerViewModelComponent
 import com.gorillalogic.cateringserviceapp.model.FeaturedCateringService
-import com.gorillalogic.cateringserviceapp.model.CateringServiceApiService
+import com.gorillalogic.cateringserviceapp.api.CateringServiceApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class FeaturedCateringServicesViewModel: ViewModel() {
 
@@ -15,7 +17,15 @@ class FeaturedCateringServicesViewModel: ViewModel() {
     val errorVisible by lazy { MutableLiveData<Boolean>() }
     val loadingVisible by lazy { MutableLiveData<Boolean>() }
 
-    private val disposable = CompositeDisposable()
+    @Inject
+    lateinit var disposable: CompositeDisposable
+
+    @Inject
+    lateinit var cateringServiceApiService: CateringServiceApiService
+
+    init {
+        DaggerViewModelComponent.create().inject(this)
+    }
 
     fun refresh() {
         errorVisible.value = false
@@ -26,7 +36,7 @@ class FeaturedCateringServicesViewModel: ViewModel() {
 
     private fun getCateringServices() {
         disposable.add(
-            CateringServiceApiService.instance.getFeaturedCateringServices()
+            cateringServiceApiService.getFeaturedCateringServices()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<List<FeaturedCateringService>>() {

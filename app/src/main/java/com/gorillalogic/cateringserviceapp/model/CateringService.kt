@@ -1,9 +1,8 @@
 package com.gorillalogic.cateringserviceapp.model
 
 import java.io.Serializable
-import java.util.*
 
-class CateringService(
+data class CateringService(
     val name: String?,
     val type: String?,
     val imageUrls: List<String>?,

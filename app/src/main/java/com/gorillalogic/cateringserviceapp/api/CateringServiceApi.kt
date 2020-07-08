@@ -1,5 +1,7 @@
-package com.gorillalogic.cateringserviceapp.model
+package com.gorillalogic.cateringserviceapp.api
 
+import com.gorillalogic.cateringserviceapp.model.FeaturedCateringService
+import com.gorillalogic.cateringserviceapp.model.UpcomingOrder
 import io.reactivex.Single
 import retrofit2.http.GET
 

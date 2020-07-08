@@ -17,7 +17,6 @@ import com.gorillalogic.cateringserviceapp.util.MenuHolder
 class MenuFragment : Fragment() {
 
     private lateinit var dataBinding: FragmentMenuBinding
-    private var menu = MenuHolder.instance.getMenu()
     private val tabCount = 3
     private val pageTitles = arrayListOf("Breakfast", "Lunch", "Dinner")
 
@@ -46,7 +45,7 @@ class MenuFragment : Fragment() {
         override fun getCount(): Int = tabCount
 
         override fun getItem(pos: Int): Fragment {
-            return FoodTimeFragment(menu?.foodTimes!![pos])
+            return FoodTimeFragment(MenuHolder.instance.getMenu()?.foodTimes!![pos])
         }
 
         override fun getPageTitle(position: Int): CharSequence {
