@@ -157,7 +157,6 @@
                     android:id="@+id/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:justificationMode="inter_word"
                     android:padding="20dp"
                     android:text="@{cateringService.description}"
@@ -170,7 +169,6 @@
                     android:id="@+id/indicators"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/description">
@@ -185,7 +183,7 @@
                         android:gravity="center"
                         android:padding="4dp"
                         android:text="@{@string/preparation_time(cateringService.preparationTime)}"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/gray"
                         android:textSize="9sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -202,7 +200,7 @@
                         android:gravity="center"
                         android:padding="4dp"
                         android:text="@{@string/guests(cateringService.minimumGuests,cateringService.maximumGuests)}"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/gray"
                         android:textSize="9sp"
                         app:layout_constraintStart_toEndOf="@+id/time"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -216,7 +214,7 @@
                         android:gravity="center"
                         android:padding="4dp"
                         android:text="@{cateringService.priceRange}"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/gray"
                         android:textSize="9sp"
                         app:layout_constraintStart_toEndOf="@+id/guests"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -227,7 +225,7 @@
                     android:id="@+id/menu"
                     android:name="com.gorillalogic.cateringserviceapp.view.MenuFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="380dp"
                     android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

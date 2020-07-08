@@ -63,7 +63,7 @@
                         android:gravity="center"
                         android:padding="5dp"
                         android:text="@{@string/guests(cateringService.minimumGuests,cateringService.maximumGuests)}"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/gray"
                         android:textSize="8sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
