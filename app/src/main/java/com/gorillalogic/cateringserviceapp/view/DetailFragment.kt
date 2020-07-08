@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -49,13 +50,13 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun fillDropdown(){
+    private fun fillDropdown() {
 
         var guestQuantity =
             arrayOf<String?>()
 
         dataBinding.apply {
-            for (i in cateringService?.minimumGuests!!..cateringService?.maximumGuests!!){
+            for (i in cateringService?.minimumGuests!!..cateringService?.maximumGuests!!) {
                 guestQuantity += "$i Guests"
             }
 
@@ -72,11 +73,17 @@ class DetailFragment : Fragment() {
                 datesAvailable
             )
 
-
             guestsDropdown.setAdapter(guestsAdapter)
             guestsDropdown.setText(guestQuantity[0], false)
             datesDropdown.setAdapter(datesAdapter)
             datesDropdown.setText(datesAvailable[0], false)
+            var price = cateringService?.minimumGuests!! * cateringService?.pricePerGuest!!
+            hireButton.text = "Hire for $$price"
+            guestsDropdown.onItemClickListener = OnItemClickListener { _, _, _, _ ->
+                price = guestsDropdown.text.toString().split(" ")[0].toInt() * cateringService?.pricePerGuest!!
+                hireButton.text = "Hire for $$price"
+            }
+
         }
 
     }
