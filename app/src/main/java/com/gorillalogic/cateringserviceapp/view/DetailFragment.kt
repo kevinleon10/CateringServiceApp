@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.gorillalogic.cateringserviceapp.R
@@ -47,6 +48,8 @@ class DetailFragment : Fragment() {
             circleLayout.bringToFront()
 
             fillDropdown()
+
+            dropdownLayout.setBackgroundColor(ContextCompat.getColor(root.context, R.color.colorAccent))
         }
     }
 
@@ -78,10 +81,10 @@ class DetailFragment : Fragment() {
             datesDropdown.setAdapter(datesAdapter)
             datesDropdown.setText(datesAvailable[0], false)
             var price = cateringService?.minimumGuests!! * cateringService?.pricePerGuest!!
-            hireButton.text = "Hire for $$price"
+            hireButton.text = getString(R.string.hire_for, price)
             guestsDropdown.onItemClickListener = OnItemClickListener { _, _, _, _ ->
                 price = guestsDropdown.text.toString().split(" ")[0].toInt() * cateringService?.pricePerGuest!!
-                hireButton.text = "Hire for $$price"
+                hireButton.text = getString(R.string.hire_for, price)
             }
 
         }

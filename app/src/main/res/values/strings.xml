@@ -20,4 +20,5 @@
     <string name="about">About Us</string>
     <string name="menu">Our Menu</string>
     <string name="preparation_time">%1$s prep time</string>
+    <string name="hire_for">Hire for $%1$d</string>
 </resources>
