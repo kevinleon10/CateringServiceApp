@@ -12,12 +12,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 class ApiModule {
 
-    private val BASE_URL = "https://raw.githubusercontent.com"
+    private val baseUrl = "https://raw.githubusercontent.com"
 
     @Provides
     fun provideCateringServiceApi(): CateringServiceApi {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

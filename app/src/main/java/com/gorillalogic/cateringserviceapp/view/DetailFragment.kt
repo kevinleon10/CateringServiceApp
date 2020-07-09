@@ -44,12 +44,20 @@ class DetailFragment : Fragment() {
                     getProgressDrawable(root.context)
                 )
             }
-            cateringService.let { carouselView.pageCount = cateringService!!.imageUrls!!.size }
+            cateringService?.imageUrls?.let {
+                carouselView.pageCount = cateringService?.imageUrls!!.size
+            }
+
             circleLayout.bringToFront()
 
             fillDropdown()
 
-            dropdownLayout.setBackgroundColor(ContextCompat.getColor(root.context, R.color.colorAccent))
+            dropdownLayout.setBackgroundColor(
+                ContextCompat.getColor(
+                    root.context,
+                    R.color.colorAccent
+                )
+            )
         }
     }
 
@@ -59,34 +67,41 @@ class DetailFragment : Fragment() {
             arrayOf<String?>()
 
         dataBinding.apply {
-            for (i in cateringService?.minimumGuests!!..cateringService?.maximumGuests!!) {
-                guestQuantity += "$i Guests"
-            }
+            cateringService?.let {
 
-            val guestsAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
-                dataBinding.root.context,
-                R.layout.dropdown_menu_popup_item,
-                guestQuantity
-            )
+                for (i in cateringService?.minimumGuests!!..cateringService?.maximumGuests!!) {
+                    guestQuantity += "$i Guests"
+                }
 
-            val datesAvailable = cateringService?.timeAvailability!!.toTypedArray()
-            val datesAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
-                dataBinding.root.context,
-                R.layout.dropdown_menu_popup_item,
-                datesAvailable
-            )
+                val guestsAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
+                    root.context,
+                    R.layout.dropdown_menu_popup_item,
+                    guestQuantity
+                )
 
-            guestsDropdown.setAdapter(guestsAdapter)
-            guestsDropdown.setText(guestQuantity[0], false)
-            datesDropdown.setAdapter(datesAdapter)
-            datesDropdown.setText(datesAvailable[0], false)
-            var price = cateringService?.minimumGuests!! * cateringService?.pricePerGuest!!
-            hireButton.text = getString(R.string.hire_for, price)
-            guestsDropdown.onItemClickListener = OnItemClickListener { _, _, _, _ ->
-                price = guestsDropdown.text.toString().split(" ")[0].toInt() * cateringService?.pricePerGuest!!
+                guestsDropdown.setAdapter(guestsAdapter)
+                guestsDropdown.setText(guestQuantity[0], false)
+
+                cateringService?.timeAvailability?.let {
+                    val datesAvailable = cateringService?.timeAvailability!!.toTypedArray()
+                    val datesAdapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
+                        root.context,
+                        R.layout.dropdown_menu_popup_item,
+                        datesAvailable
+                    )
+                    datesDropdown.setAdapter(datesAdapter)
+                    datesDropdown.setText(datesAvailable[0], false)
+                }
+
+                var price = cateringService?.minimumGuests!! * cateringService?.pricePerGuest!!
                 hireButton.text = getString(R.string.hire_for, price)
-            }
+                guestsDropdown.onItemClickListener = OnItemClickListener { _, _, _, _ ->
+                    price = guestsDropdown.text.toString()
+                        .split(" ")[0].toInt() * cateringService?.pricePerGuest!!
+                    hireButton.text = getString(R.string.hire_for, price)
+                }
 
+            }
         }
 
     }

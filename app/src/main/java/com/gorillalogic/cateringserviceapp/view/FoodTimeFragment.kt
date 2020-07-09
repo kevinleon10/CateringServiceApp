@@ -12,7 +12,7 @@ import com.gorillalogic.cateringserviceapp.model.FoodTime
 import com.gorillalogic.cateringserviceapp.util.getProgressDrawable
 import com.gorillalogic.cateringserviceapp.util.loadImage
 
-class FoodTimeFragment(private var foodTime: FoodTime) : Fragment() {
+class FoodTimeFragment(private var foodTime: FoodTime?) : Fragment() {
 
     private lateinit var dataBinding: FragmentFoodTimeBinding
 
@@ -29,21 +29,23 @@ class FoodTimeFragment(private var foodTime: FoodTime) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         dataBinding.apply {
-            saucer = foodTime.saucers!![0]
-            firstItem.loadImage(
-                foodTime.saucers!![0].imageUrl,
-                getProgressDrawable(root.context)
-            )
+            foodTime?.let {
+                saucer = foodTime?.saucers?.get(0)
+                firstItem.loadImage(
+                    foodTime?.saucers?.get(0)?.imageUrl,
+                    getProgressDrawable(root.context)
+                )
 
-            secondItem.loadImage(
-                foodTime.saucers!![1].imageUrl,
-                getProgressDrawable(root.context)
-            )
+                secondItem.loadImage(
+                    foodTime?.saucers?.get(1)?.imageUrl,
+                    getProgressDrawable(root.context)
+                )
 
-            thirdItem.loadImage(
-                foodTime.saucers!![2].imageUrl,
-                getProgressDrawable(root.context)
-            )
+                thirdItem.loadImage(
+                    foodTime?.saucers?.get(2)?.imageUrl,
+                    getProgressDrawable(root.context)
+                )
+            }
         }
     }
 }

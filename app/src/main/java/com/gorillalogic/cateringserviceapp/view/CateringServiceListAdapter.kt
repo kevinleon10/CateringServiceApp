@@ -52,14 +52,14 @@ class CateringServiceListAdapter(private val cateringServiceList: ArrayList<Cate
                         R.color.colorAccent
                     )
                 )
-                cateringService.let {
-                    val imageUrl = cateringService!!.imageUrls?.get(0)
+                cateringService?.let {
+                    val imageUrl = cateringService?.imageUrls?.get(0)
                     cateringServiceImage.loadImage(
                         imageUrl,
                         getProgressDrawable(root.context)
                     )
                     cateringServiceLayout.setOnClickListener {
-                        val action = HomeFragmentDirections.actionDetail(cateringService!!)
+                        val action = HomeFragmentDirections.actionDetail(cateringService as CateringService)
                         MenuHolder.instance.setMenu((cateringService as CateringService).menu)
                         Navigation.findNavController(view.root).navigate(action)
                     }

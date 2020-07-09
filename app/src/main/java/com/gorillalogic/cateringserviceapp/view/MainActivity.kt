@@ -20,10 +20,15 @@ class MainActivity : AppCompatActivity() {
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setupNavigation()
         dataBinding.mainLayout.setBackgroundColor(Color.WHITE)
-        dataBinding.viewLineSeparator.setBackgroundColor(ContextCompat.getColor(dataBinding.root.context, R.color.colorAccent))
+        dataBinding.viewLineSeparator.setBackgroundColor(
+            ContextCompat.getColor(
+                dataBinding.root.context,
+                R.color.colorAccent
+            )
+        )
     }
 
-    private fun setupNavigation(){
+    private fun setupNavigation() {
         val navController = Navigation.findNavController(this, R.id.navHostFragment)
         NavigationUI.setupWithNavController(dataBinding.bottomNavigationView, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->

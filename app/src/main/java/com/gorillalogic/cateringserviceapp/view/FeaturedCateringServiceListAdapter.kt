@@ -47,9 +47,9 @@ class FeaturedCateringServiceListAdapter(private val featuredCateringServiceList
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = cateringServiceListAdapter
             }
-            view.featureCateringService.let {
-                cateringServiceListAdapter.updateCateringServiceList(view.featureCateringService!!.cateringServices!!)
-            }
+             view.featureCateringService?.cateringServices?.let {
+                cateringServiceListAdapter.updateCateringServiceList(view.featureCateringService?.cateringServices!!)
+             }
         }
     }
 }

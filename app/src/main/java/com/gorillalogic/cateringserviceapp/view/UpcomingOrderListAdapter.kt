@@ -50,9 +50,8 @@ class UpcomingOrderListAdapter(private val upcomingOrderList: ArrayList<Upcoming
                         R.color.colorAccent
                     )
                 )
-                val imageUrl = upcomingOrder?.imageUrl
                 cateringServiceImage.loadImage(
-                    imageUrl,
+                    upcomingOrder?.imageUrl,
                     getProgressDrawable(root.context)
                 )
             }

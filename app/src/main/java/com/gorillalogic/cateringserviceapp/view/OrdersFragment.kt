@@ -31,7 +31,8 @@ class OrdersFragment : Fragment() {
         dataBinding.viewPager.adapter = PagerAdapter(this.requireActivity().supportFragmentManager)
     }
 
-    inner class PagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+    inner class PagerAdapter(manager: FragmentManager) :
+        FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getCount(): Int = tabCount
 
