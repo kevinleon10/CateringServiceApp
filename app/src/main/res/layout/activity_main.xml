@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mainLayout"
         tools:context=".view.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
